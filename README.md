@@ -9,7 +9,7 @@ This is a React application.
 
 To run the App Locally-
 Clone the repository:
-xx
+https://github.com/Aris-Capstone/Capstone_Frontend.git
 
 Navigate into the project directory:
 cd capstone

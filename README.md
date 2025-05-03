@@ -7,13 +7,17 @@ This is a basic e-commerc website built as a school coding project, showcasing a
  
 This is a React application. 
 
-To run the App Locally
-	1.	Clone the repository:
+To run the App Locally-
+Clone the repository:
 xx
-	2.	Navigate into the project directory:
+
+Navigate into the project directory:
 cd capstone
-	3.	Install dependencies:
+
+Install dependencies:
 npm install
-	4.	Start the development server:
+
+Start the development server:
 npm start
-	5.	Open your browser and visit http://localhost:3000 to view the app.
+
+Open your browser and visit http://localhost:3000 to view the app.

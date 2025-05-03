@@ -1,5 +1,6 @@
 import { useFetchUsersQuery } from '../api/storeApi';
 
+
 export default function Users() {
     const { data: users, isLoading, error } = useFetchUsersQuery();
 

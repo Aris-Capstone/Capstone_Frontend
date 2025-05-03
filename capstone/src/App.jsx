@@ -13,7 +13,6 @@ function App() {
     <Routes>
       <Route path="/users" element={<Users />} />
       <Route path="/create-user" element={<CreateUser />} />
-      //should it be "users"?
       <Route path="/products" element={<Products />} />
     </Routes>
 

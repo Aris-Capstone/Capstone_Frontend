@@ -18,3 +18,27 @@
     height: 200px;
     object-fit: cover;
 }
+
+.single-product {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-details {
+    display: flex;
+    gap: 2rem;
+}
+
+.back-button {
+    background-color: hotpink;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    margin: 1rem 0 2rem 0;
+}
+
+.single-product-image {
+    width: 50%;
+    height: 50%;
+}

@@ -1,9 +1,11 @@
 import { useFetchProductsQuery } from "../api/storeApi";
 import { useNavigate } from 'react-router-dom';
-//import SearchBar from "./SearchBar"
+import SearchBar from "./SearchBar"
+import { useState } from "react";
 
 export default function Products() {
     const navigate = useNavigate();
+    const [searchParamater, setSearchParamater] = useState("");
     const { data, isLoading, error } = useFetchProductsQuery();
 
     if (isLoading) {
@@ -20,9 +22,18 @@ export default function Products() {
             </section>
         );
     }
+
+    const productsToDisplay =
+        searchParamater !== "" && data.products ? data.products.filter(
+            (product) => product.name.toUpperCase().includes(searchParamater.toUpperCase())
+        )
+            : data.products;
+
     return (
-        <div>
+        <section>
             <h1 className="products-title">Happiest Store on Earth</h1>
+            <SearchBar searchParamater={searchParamater} setSearchParamater={setSearchParamater} />
+
             <div className="products-container">
                 {data?.map((product) => {
                     return (
@@ -41,6 +52,6 @@ export default function Products() {
                     );
                 })}
             </div>
-        </div>
+        </section>
     );
 }

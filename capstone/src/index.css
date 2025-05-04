@@ -42,3 +42,10 @@
     width: 50%;
     height: 50%;
 }
+
+.search-bar {
+    display: flex;
+    color: hotpink;
+    justify-content: center;
+    margin-bottom: 2rem;
+}

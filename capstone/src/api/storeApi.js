@@ -22,6 +22,14 @@ export const storeApi = createApi({
             }),
             invalidatesTags: ["Users"],
         }),
+        authenticate: builder.mutation({
+            query: (body) => ({
+                url: "/api/login",
+                method: "POST",
+                body,
+            }),
+            invalidatesTags: ["Users"],
+        }),
         createProduct: builder.mutation({
             query: (body) => ({
                 url: "/api/products",
@@ -87,4 +95,5 @@ export const {
     useFetchUsersQuery,
     useUpdateUserCartMutation,
     useDeleteUserCartMutation,
+    useAuthenticateMutation,
 } = storeApi;   

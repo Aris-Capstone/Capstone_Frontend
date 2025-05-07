@@ -23,35 +23,29 @@ export default function Products() {
         );
     }
 
-    const productsToDisplay =
-        searchParamater !== "" && data.products ? data.products.filter(
-            (product) => product.name.toUpperCase().includes(searchParamater.toUpperCase())
+    const productsToDisplay = searchParamater !== "" && data
+        ? data.filter((product) =>
+            product.name.toUpperCase().includes(searchParamater.toUpperCase())
         )
-            : data.products;
+        : data;
 
     return (
-        <section>
+        <>
             <h1 className="products-title">Happiest Store on Earth</h1>
             <SearchBar searchParamater={searchParamater} setSearchParamater={setSearchParamater} />
 
-            <div className="products-container">
-                {data?.map((product) => {
-                    return (
-                        <section>
-                            <div key={product.id}>
-                                <img className="product-image" src={product.image_url} alt={product.name} />
-                                <h3>{product.name}</h3>
-                                <p>{product.description}</p>
-                                <p>${product.price}</p>
-                            </div>
-                            <div>
-                                <button onClick={() => navigate(`/products/${product.id}`)}>View Product</button>
-                            </div>
-                        </section>
-
-                    );
-                })}
-            </div>
-        </section>
+            <section className="products-container">
+                {productsToDisplay?.map((product) => (
+                    <div key={product.id}>
+                        <img className="product-image" src={product.image_url} alt={product.name} />
+                        <div>
+                            <h3>{product.name}</h3>
+                            <button className="view-details" onClick={() => navigate(`/products/${product.id}`)}>View Product</button>
+                        </div>
+                    </div>
+                ))}
+            </section>
+        </>
     );
-}
+};
+

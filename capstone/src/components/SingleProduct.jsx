@@ -23,7 +23,7 @@ export default function SingleProduct() {
 
     return (
         <div className="single-product">
-            <button onClick={() => navigate('/products')} className="back-button">
+            <button onClick={() => navigate('/')} className="back-button">
                 Back to Products
             </button>
             <div className="product-details">
@@ -38,6 +38,9 @@ export default function SingleProduct() {
                     <p className="price">${product.price}</p>
                 </div>
             </div>
+            <button onClick={() => navigate('/user_cart')} className="add-to-cart">
+                Add to Cart
+            </button>
         </div>
     );
 }

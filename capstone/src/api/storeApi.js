@@ -23,10 +23,17 @@ export const storeApi = createApi({
             invalidatesTags: ["Users"],
         }),
         authenticate: builder.mutation({
-            query: (body) => ({
+            query: (credentials) => ({
                 url: "/api/login",
                 method: "POST",
-                body,
+                body: {
+                    username: credentials.username,
+                    password: credentials.password,
+                },
+                headers: {
+                    "content-type": "application/json",
+                    accept: "application/json",
+                }
             }),
             invalidatesTags: ["Users"],
         }),

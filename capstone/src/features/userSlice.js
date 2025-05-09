@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-    token: "",
     user: {},
     isLoggedIn: false,
     cart: [],
+    token: null,
 };
 
 const userSlice = createSlice({
@@ -16,27 +16,33 @@ const userSlice = createSlice({
             state.user = action.payload.user;
             state.isLoggedIn = true;
         },
+        setIsLoggedIn: (state, action) => {
+            state.isLoggedIn = action.payload;
+        },
+        setCart: (state, action) => {
+            state.cart = action.payload;
+        },
         addToCart: (state, action) => {
             state.cart.push(action.payload);
         },
         removeFromCart: (state, action) => {
             state.cart = state.cart.filter((item) => item.id !== action.payload);
         },
-        login: (state, action) => {
-            state.token = action.payload.token;
-            state.user = action.payload.user;
-            state.isLoggedIn = true;
-        },
         logout: (state) => {
-            state.token = "";
+            state.token = null;
             state.user = {};
+            state.cart = [];
             state.isLoggedIn = false;
+        },
+        setToken: (state, action) => {
+            state.token = action.payload;
         },
     },
 });
 
-export const { setUser, logout, addToCart, removeFromCart, login } = userSlice.actions;
+export const { setUser, setIsLoggedIn, setCart, addToCart, removeFromCart, logout, setToken } = userSlice.actions;
 export const getUserId = (state) => state.user.user.id;
 export const getToken = (state) => state.user.token;
 export const getCart = (state) => state.user.cart;
+export const getIsLoggedIn = (state) => state.user.isLoggedIn;
 export default userSlice.reducer;

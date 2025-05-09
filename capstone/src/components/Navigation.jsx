@@ -14,9 +14,11 @@ export default function Navigation() {
     return (
         <div id="navigation" className="navigation">
             <NavLink to="/">Home</NavLink>
-            {!userId && <NavLink to="/login">Login</NavLink>}
-            {userId && <a onClick={logout}>Logout</a>}
-            <NavLink to="/user_cart">Cart</NavLink>
+            <div className="right-links">
+                {!userId && <NavLink to="/login">Login</NavLink>}
+                {userId && <a onClick={logout}>Logout</a>}
+                <NavLink to="/user_cart">Cart</NavLink>
+            </div>
         </div>
     );
 };

@@ -1,9 +1,12 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useFetchProductQuery } from '../api/storeApi';
+import { addToCart } from '../features/userSlice';
+import { useDispatch } from 'react-redux';
 
 export default function SingleProduct() {
     const { productId } = useParams();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { data: product, isLoading, error } = useFetchProductQuery(productId);
 
     if (isLoading) {
@@ -38,7 +41,7 @@ export default function SingleProduct() {
                     <p className="price">${product.price}</p>
                 </div>
             </div>
-            <button onClick={() => navigate('/user_cart')} className="add-to-cart">
+            <button onClick={() => dispatch(addToCart(product))} className="add-to-cart">
                 Add to Cart
             </button>
         </div>

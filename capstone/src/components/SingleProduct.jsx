@@ -34,22 +34,20 @@ export default function SingleProduct() {
                 Back to Products
             </button>
             <div className="product-details">
+                <h1>{product.name}</h1>
                 <img
                     className="single-product-image"
                     src={product.image_url}
                     alt={product.name}
                 />
-                <div className="product-info">
-                    <h1>{product.name}</h1>
-                    <p className="description">{product.description}</p>
-                    <p className="price">${product.price}</p>
-                </div>
+                <p className="description">{product.description}</p>
+                <p className="price">${product.price}</p>
+                {token &&
+                    <button onClick={() => dispatch(addToCart(product))} className="add-to-cart">
+                        Add to Cart
+                    </button>
+                }
             </div>
-            {token &&
-                <button onClick={() => dispatch(addToCart(product))} className="add-to-cart">
-                    Add to Cart
-                </button>
-            }
         </div>
     );
 }

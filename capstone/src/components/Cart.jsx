@@ -24,18 +24,19 @@ export default function Cart() {
             <div className="cart-items">
                 {cart.map((item) => (
                     <div key={item.cartItemId} className="cart-item">
-                        <img
-                            className="cart-item-image"
-                            src={item.image_url}
-                            alt={item.name}
-                        />
                         <div className="cart-item-details">
-                            <h3>{item.name}</h3>
-                            <p> Price: ${item.price}</p>
-
-                            <p>Quantity: 1</p>
-                            <button className="remove-button" onClick={() => handleRemove(item.cartItemId)} > Remove </button>
+                            <img
+                                className="cart-item-image"
+                                src={item.image_url}
+                                alt={item.name}
+                            />
+                            <div className="cart-item-info">
+                                <h3>{item.name}</h3>
+                                <p>Price: ${item.price}</p>
+                                <p>Quantity: 1</p>
+                            </div>
                         </div>
+                        <button className="remove-button" onClick={() => handleRemove(item.cartItemId)}>Remove </button>
                     </div>
                 ))}
             </div>

@@ -53,7 +53,29 @@
 
 .product-details {
     display: flex;
-    gap: 2rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.product-details h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.product-details .description {
+    text-align: center;
+    line-height: 1.6;
+    max-width: 600px;
+    font-size: 1.2rem;
+}
+
+.product-details .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: hotpink;
 }
 
 .back-button {
@@ -65,8 +87,10 @@
 }
 
 .single-product-image {
-    width: 50%;
-    height: 50%;
+    width: 20%;
+    height: auto;
+    padding: 1rem;
+    object-fit: contain;
 }
 
 .search-bar {
@@ -182,20 +206,45 @@
 
 .cart-item {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
 }
 
 .cart-item-image {
     width: 100px;
     height: 100px;
-    object-fit: cover;
 }
 
+.cart-item-details {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.cart-item-info h3 {
+    margin: 0;
+}
+
+.cart-item-info p {
+    margin: 0;
+    color: hotpink;
+    font-size: 0.9rem;
+}
 
 .remove-button {
     background-color: hotpink;
     color: white;
     border: none;
+    padding: 0.5rem 1rem;
+    width: fit-content;
 }
 
 .checkout {

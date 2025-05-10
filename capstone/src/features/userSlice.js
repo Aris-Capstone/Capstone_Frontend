@@ -23,10 +23,14 @@ const userSlice = createSlice({
             state.cart = action.payload;
         },
         addToCart: (state, action) => {
-            state.cart.push(action.payload);
+            const cartItem = {
+                ...action.payload,
+                cartItemId: Date.now() // Add unique identifier
+            };
+            state.cart.push(cartItem);
         },
         removeFromCart: (state, action) => {
-            state.cart = state.cart.filter((item) => item.id !== action.payload);
+            state.cart = state.cart.filter((item) => item.cartItemId !== action.payload);
         },
         logout: (state) => {
             state.token = null;
@@ -41,7 +45,7 @@ const userSlice = createSlice({
 });
 
 export const { setUser, setIsLoggedIn, setCart, addToCart, removeFromCart, logout, setToken } = userSlice.actions;
-export const getUserId = (state) => state.user.user.id;
+export const getUserId = (state) => state.user.user?.id;
 export const getToken = (state) => state.user.token;
 export const getCart = (state) => state.user.cart;
 export const getIsLoggedIn = (state) => state.user.isLoggedIn;

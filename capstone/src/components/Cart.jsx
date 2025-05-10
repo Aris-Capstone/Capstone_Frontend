@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCart, removeFromCart } from '../features/userSlice';
+import { getCart, removeFromCart, setCart } from '../features/userSlice';
 
 export default function Cart() {
-    const cart = useSelector(getCart);
     const dispatch = useDispatch();
+    const cart = useSelector(getCart);
 
-    const handleRemoveFromCart = (productId) => {
-        dispatch(removeFromCart(productId));
+    const handleRemove = (cartItemId) => {
+        dispatch(removeFromCart(cartItemId));
     };
 
     if (!cart || cart.length === 0) {
@@ -22,22 +22,27 @@ export default function Cart() {
         <section>
             <h2>Your Shopping Cart</h2>
             <div className="cart-items">
-                {cart.map((product) => (
-                    <div className="cart-item" key={product.id}>
+                {cart.map((item) => (
+                    <div key={item.cartItemId} className="cart-item">
                         <img
                             className="cart-item-image"
-                            src={product.image_url}
-                            alt={product.name}
+                            src={item.image_url}
+                            alt={item.name}
                         />
                         <div className="cart-item-details">
-                            <h3>{product.name}</h3>
-                            <p> Price: ${product.price}</p>
-                            <p>Quantity: {product.quantity}</p>
-                            <button className="remove-button" onClick={() => handleRemoveFromCart(product.id)}>Remove</button>
+                            <h3>{item.name}</h3>
+                            <p> Price: ${item.price}</p>
+
+                            <p>Quantity: 1</p>
+                            <button className="remove-button" onClick={() => handleRemove(item.cartItemId)} > Remove </button>
                         </div>
                     </div>
                 ))}
             </div>
+            <div>
+                <h3> Total Price: ${cart.reduce((total, item) => total + item.price, 0).toFixed(2)} </h3>
+            </div>
+            <button className="checkout" onClick={() => dispatch(setCart([]))}>Checkout</button>
         </section>
     );
 };

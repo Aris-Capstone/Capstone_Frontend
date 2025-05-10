@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUser } from "../features/userSlice";
+import { setToken } from "../features/userSlice";
 import { useCreateUserMutation } from "../api/storeApi";
 
 export default function CreateAccount() {
@@ -33,12 +33,12 @@ export default function CreateAccount() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { error, data } = await createAccount({ username, password, name, address });
+        const { error, data } = await createAccount({ username, password, name, mailing_address: address });
         if (error) {
             setErrors("Something went wrong");
             return;
         }
-        dispatch(setToken(data.token));
+        dispatch(setToken(data));
         navigate("/");
     };
 

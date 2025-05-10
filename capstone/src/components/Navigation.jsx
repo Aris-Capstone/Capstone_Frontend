@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, getCart, initialState, getUserId } from "../features/userSlice";
+import { setUser, getCart, initialState, getToken } from "../features/userSlice";
 
 export default function Navigation() {
     const dispatch = useDispatch();
-    const userId = useSelector(getUserId);
+    const token = useSelector(getToken);
     const cart = useSelector(getCart);
 
     const logout = () => {
@@ -15,9 +15,9 @@ export default function Navigation() {
         <div id="navigation" className="navigation">
             <NavLink to="/">Home</NavLink>
             <div className="right-links">
-                {!userId && <NavLink to="/login">Login</NavLink>}
-                {userId && <a onClick={logout}>Logout</a>}
-                <NavLink to="/user_cart">Cart</NavLink>
+                {!token && <NavLink to="/login">Login</NavLink>}
+                {token && <a onClick={logout}>Logout</a>}
+                <NavLink to="/user_cart">Cart {cart.length}</NavLink>
             </div>
         </div>
     );

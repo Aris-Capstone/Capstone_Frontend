@@ -29,6 +29,9 @@ export const storeApi = createApi({
                 body: {
                     username: credentials.username,
                     password: credentials.password,
+                    name: credentials.name,
+                    mailing_address: credentials.mailing_address,
+                    is_admin: credentials.is_admin,
                 },
                 headers: {
                     "content-type": "application/json",
@@ -70,7 +73,7 @@ export const storeApi = createApi({
             providesTags: ["Users"],
         }),
         fetchUsers: builder.query({
-            query: () => "/api/users",
+            query: () => "/api/admin_users",
             providesTags: ["Users"],
         }),
         updateUserCart: builder.mutation({
@@ -88,6 +91,28 @@ export const storeApi = createApi({
             }),
             invalidatesTags: ["Cart"],
         }),
+        deleteProduct: builder.mutation({
+            query: (productId) => ({
+                url: `/api/products/${productId}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Products"],
+        }),
+        register: builder.mutation({
+            query: (body) => ({
+                url: "/api/users",
+                method: "POST",
+                body,
+            }),
+            invalidatesTags: ["Users"],
+        }),
+        findUserWithToken: builder.query({
+            query: (token) => ({
+                url: "/api/users/findUserWithToken",
+                method: "GET",
+                headers: { Authorization: `${token}` },
+            }),
+        }),
     }),
 });
 
@@ -102,5 +127,8 @@ export const {
     useFetchUsersQuery,
     useUpdateUserCartMutation,
     useDeleteUserCartMutation,
+    useDeleteProductMutation,
     useAuthenticateMutation,
+    useRegisterMutation,
+    useFindUserWithTokenQuery,
 } = storeApi;   

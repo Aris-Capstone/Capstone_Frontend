@@ -1,14 +1,22 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, getCart, initialState, getToken } from "../features/userSlice";
+import { logout, getCart } from "../features/userSlice";
 
 export default function Navigation() {
     const dispatch = useDispatch();
-    const token = useSelector(getToken);
+    const token = useSelector((state) => state.user.token);
     const cart = useSelector(getCart);
+    const user = useSelector((state) => state.user.user);
 
-    const logout = () => {
-        dispatch(setUser({ ...initialState }));
+    console.log("Navigation - Current user state:", {
+        token,
+        user,
+        is_admin: user?.is_admin,
+        fullState: user
+    });
+
+    const handleLogout = () => {
+        dispatch(logout());
     };
 
     return (
@@ -16,8 +24,13 @@ export default function Navigation() {
             <NavLink to="/">Home</NavLink>
             <div className="right-links">
                 {!token && <NavLink to="/login">Login</NavLink>}
-                {token && <a onClick={logout}>Logout</a>}
+                {token && <NavLink to="/" onClick={handleLogout}>Logout</NavLink>}
                 <NavLink to="/user_cart">Cart {cart.length}</NavLink>
+                {user?.is_admin && (
+                    <Link to="/AdminHome" className="nav-link">
+                        Admin
+                    </Link>
+                )}
             </div>
         </div>
     );

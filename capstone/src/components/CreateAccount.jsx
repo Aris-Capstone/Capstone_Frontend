@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setToken } from "../features/userSlice";
-import { useCreateUserMutation } from "../api/storeApi";
+import { setToken, setUser } from "../features/userSlice";
+import { useCreateUserMutation, useAuthenticateMutation } from "../api/storeApi";
 
 export default function CreateAccount() {
     const [createAccount] = useCreateUserMutation();
+    const [login] = useAuthenticateMutation();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -33,13 +34,44 @@ export default function CreateAccount() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { error, data } = await createAccount({ username, password, name, mailing_address: address });
-        if (error) {
-            setErrors("Something went wrong");
-            return;
+        try {
+            const userData = { username, password, name, mailing_address: address };
+            console.log("Attempting to create account with data:", userData);
+
+            const result = await createAccount(userData);
+            console.log("Create Account Response:", result);
+
+            if (result.error) {
+                console.error("Create Account Error Details:", {
+                    status: result.error.status,
+                    data: result.error.data,
+                    message: result.error.message
+                });
+                setErrors(result.error.data?.message || "Something went wrong");
+                return;
+            }
+
+            if (result.data) {
+                // After successful account creation, log in to get the token
+                const loginResult = await login({ username, password });
+                if (loginResult.data?.token) {
+                    dispatch(setToken(loginResult.data.token));
+                    dispatch(setUser({
+                        token: loginResult.data.token,
+                        user: loginResult.data.user,
+                        is_admin: loginResult.data.user?.is_admin
+                    }));
+                    navigate("/");
+                } else {
+                    setErrors("Account created but login failed. Please try logging in manually.");
+                }
+            } else {
+                setErrors("Invalid response from server");
+            }
+        } catch (err) {
+            console.error("Create Account Exception:", err);
+            setErrors("Failed to create account. Please try again.");
         }
-        dispatch(setToken(data));
-        navigate("/");
     };
 
     return (

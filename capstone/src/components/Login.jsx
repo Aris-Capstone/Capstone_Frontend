@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setToken } from "../features/userSlice";
+import { setToken, setUser, setIsAdmin } from "../features/userSlice";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useAuthenticateMutation } from "../api/storeApi";
 
@@ -16,13 +16,20 @@ export default function Login() {
         event.preventDefault();
         try {
             const result = await login({ username, password });
-            console.log(result);
+            console.log("Login response:", result);
             if (result.data) {
                 dispatch(setToken(result.data.token));
+                if (result.data.user) {
+                    dispatch(setUser({
+                        token: result.data.token,
+                        user: result.data.user,
+                        is_admin: result.data.user?.is_admin
+                    }));
+                }
                 navigate("/");
             }
         } catch (err) {
-            console.error(err);
+            console.error("Login error:", err);
         }
     };
 

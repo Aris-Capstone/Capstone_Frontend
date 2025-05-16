@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setToken, setUser } from "../features/userSlice";
 import { useCreateUserMutation, useAuthenticateMutation } from "../api/storeApi";
 
+//create account form functionality
 export default function CreateAccount() {
     const [createAccount] = useCreateUserMutation();
     const [login] = useAuthenticateMutation();
@@ -32,21 +33,15 @@ export default function CreateAccount() {
         }
     };
 
+    //create account form functionality
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             const userData = { username, password, name, mailing_address: address };
-            console.log("Attempting to create account with data:", userData);
 
             const result = await createAccount(userData);
-            console.log("Create Account Response:", result);
 
             if (result.error) {
-                console.error("Create Account Error Details:", {
-                    status: result.error.status,
-                    data: result.error.data,
-                    message: result.error.message
-                });
                 setErrors(result.error.data?.message || "Something went wrong");
                 return;
             }
@@ -69,11 +64,11 @@ export default function CreateAccount() {
                 setErrors("Invalid response from server");
             }
         } catch (err) {
-            console.error("Create Account Exception:", err);
             setErrors("Failed to create account. Please try again.");
         }
     };
 
+    //render the create account form
     return (
         <section className="create-account-section">
             <h2 className="create-account-title">Create Account</h2>

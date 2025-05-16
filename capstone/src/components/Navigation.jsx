@@ -2,23 +2,19 @@ import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, getCart } from "../features/userSlice";
 
+//navigation bar functionality
 export default function Navigation() {
     const dispatch = useDispatch();
     const token = useSelector((state) => state.user.token);
     const cart = useSelector(getCart);
     const user = useSelector((state) => state.user.user);
 
-    console.log("Navigation - Current user state:", {
-        token,
-        user,
-        is_admin: user?.is_admin,
-        fullState: user
-    });
 
     const handleLogout = () => {
         dispatch(logout());
     };
 
+    //render the navigation bar
     return (
         <div id="navigation" className="navigation">
             <NavLink to="/">Home</NavLink>

@@ -12,11 +12,11 @@ export default function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    //login form functionality
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             const result = await login({ username, password });
-            console.log("Login response:", result);
             if (result.data) {
                 dispatch(setToken(result.data.token));
                 if (result.data.user) {
@@ -29,10 +29,10 @@ export default function Login() {
                 navigate("/");
             }
         } catch (err) {
-            console.error("Login error:", err);
         }
     };
 
+    //login form functionality
     const handleChange = (event) => {
         if (event.target.name === "username") {
             setUsername(event.target.value);
@@ -41,6 +41,7 @@ export default function Login() {
         };
     };
 
+    //render the login form
     return (
         <form className="login-form" onSubmit={handleSubmit}>
             <label>Username:</label>

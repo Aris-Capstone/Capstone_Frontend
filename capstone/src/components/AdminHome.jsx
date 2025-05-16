@@ -12,7 +12,7 @@ export default function AdminHome() {
     if (usersLoading || productsLoading) {
         return <div>Loading...</div>;
     }
-
+    //have a basic admin dashboard to access admin functionality 
     return (
         <div className="admin-home">
             <h1>Admin Dashboard</h1>

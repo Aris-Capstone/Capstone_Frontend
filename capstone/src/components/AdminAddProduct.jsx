@@ -11,8 +11,8 @@ export default function AdminAddProduct() {
     const [error, setError] = useState(null);
     const { data: products, isLoading, error: fetchError } = useFetchProductsQuery();
     const [createProduct] = useCreateProductMutation();
-    const [deleteProduct] = useDeleteProductMutation();
 
+    //form functionality    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
@@ -29,7 +29,7 @@ export default function AdminAddProduct() {
             if (result.error) {
                 setError(result.error.data?.message || 'Failed to create product');
             } else {
-                // Clear form on success
+                // Clear form 
                 setName('');
                 setDescription('');
                 setPrice('');
@@ -40,13 +40,9 @@ export default function AdminAddProduct() {
         }
     };
 
-    const handleDelete = async (productId) => {
-        try {
-            await deleteProduct(productId);
-        } catch (err) {
-            setError('Failed to delete product. Please try again.');
-        }
-    };
+    //delete product functionality
+
+    //edit product functionality
 
     if (isLoading) {
         return (
@@ -61,17 +57,17 @@ export default function AdminAddProduct() {
                 <h2>Error loading products</h2>
             </section>
         );
-    }
+    };
 
+    //return contents   
     return (
         <>
             <section className="admin-add-product">
                 <button className="back-button" onClick={() => navigate('/AdminHome')}>Back</button>
-                <h2>Manage Products</h2>
+                <h2 className="manage-products-title">Manage Products</h2>
 
                 <div className="form-group">
                     <h3>Add New Product</h3>
-                    {error && <p className="error-message">{error}</p>}
                     <form onSubmit={handleSubmit} className="product-form">
                         <div className="form-field">
                             <label htmlFor="name">Product Name:</label>
@@ -123,7 +119,7 @@ export default function AdminAddProduct() {
                 </div>
 
                 <div className="admin-products-list">
-                    <h3>Current Products</h3>
+                    <h3 className="current-products-title">Current Products</h3>
                     <div className="products-container">
                         {products?.map((product) => (
                             <div key={product.id} className="product-card">
@@ -133,10 +129,16 @@ export default function AdminAddProduct() {
                                     <p>${product.price}</p>
                                     <p>{product.description}</p>
                                     <button
-                                        className="delete-button"
+                                        className="admin-delete-button"
                                         onClick={() => handleDelete(product.id)}
                                     >
                                         Delete Product
+                                    </button>
+                                    <button
+                                        className="admin-edit-button"
+                                        onClick={() => handleEdit(product.id)}
+                                    >
+                                        Edit Product
                                     </button>
                                 </div>
                             </div>

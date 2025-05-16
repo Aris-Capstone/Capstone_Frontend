@@ -13,7 +13,7 @@ import Cart from './components/Cart';
 import AdminHome from './components/AdminHome';
 import AdminAddProduct from './components/AdminAddProduct';
 import AdminUserList from './components/AdminUserList';
-
+import Checkout from './components/Checkout';
 function App() {
   const token = useSelector(getToken);
   return (
@@ -29,6 +29,7 @@ function App() {
         <Route path="/AdminHome" element={<AdminHome />} />
         <Route path="/products" element={<AdminAddProduct />} />
         <Route path="/admin_users" element={<AdminUserList />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </div>
 

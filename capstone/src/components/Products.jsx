@@ -23,12 +23,14 @@ export default function Products() {
         );
     }
 
+    //filter the products to display
     const productsToDisplay = searchParamater !== "" && data
         ? data.filter((product) =>
             product.name.toUpperCase().includes(searchParamater.toUpperCase())
         )
         : data;
 
+    //render the products
     return (
         <>
             <h1 className="products-title">Happiest Store on Earth</h1>

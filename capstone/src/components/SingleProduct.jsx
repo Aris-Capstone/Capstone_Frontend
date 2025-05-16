@@ -28,6 +28,7 @@ export default function SingleProduct() {
         );
     }
 
+    //render the single product
     return (
         <div className="single-product">
             <button onClick={() => navigate('/')} className="back-button">

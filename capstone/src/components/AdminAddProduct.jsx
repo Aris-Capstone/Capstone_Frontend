@@ -128,18 +128,20 @@ export default function AdminAddProduct() {
                                     <h3>{product.name}</h3>
                                     <p>${product.price}</p>
                                     <p>{product.description}</p>
-                                    <button
-                                        className="admin-delete-button"
-                                        onClick={() => handleDelete(product.id)}
-                                    >
-                                        Delete Product
-                                    </button>
-                                    <button
-                                        className="admin-edit-button"
-                                        onClick={() => handleEdit(product.id)}
-                                    >
-                                        Edit Product
-                                    </button>
+                                    <div className="admin-buttons-container">
+                                        <button
+                                            className="admin-delete-button"
+                                            onClick={() => handleDelete(product.id)}
+                                        >
+                                            Delete Product
+                                        </button>
+                                        <button
+                                            className="admin-edit-button"
+                                            onClick={() => handleEdit(product.id)}
+                                        >
+                                            Edit Product
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         ))}

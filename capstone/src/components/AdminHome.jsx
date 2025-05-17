@@ -17,7 +17,7 @@ export default function AdminHome() {
         <div className="admin-home">
             <h1>Admin Dashboard</h1>
             <div className="admin-welcome">
-                <h2>Welcome, {user?.name || 'Admin'}</h2>
+                <h2 className="admin-welcome-text">Welcome, {user?.name || 'Admin'}</h2>
             </div>
 
             <div className="admin-stats">

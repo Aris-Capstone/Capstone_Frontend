@@ -14,12 +14,11 @@
     font-size: 2.5rem;
     position: relative;
     background: linear-gradient(to right,
-            red 20%,
-            orange 20%,
-            yellow 38%,
-            green 50%,
-            blue 50%,
-            rgb(226, 48, 226) 100%);
+            orange 35%,
+            yellow 45%,
+            green 55%,
+            blue 65%,
+            rgb(226, 48, 226) 60%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -323,13 +322,18 @@
     margin-left: 1rem;
 }
 
+.admin-buttons-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
 .admin-delete-button {
     background-color: hotpink;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    margin-left: 1rem;
 }
 
 .admin-edit-button {
@@ -338,7 +342,6 @@
     border: none;
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    margin-left: 1rem;
 }
 
 .checkout-title {
@@ -374,4 +377,19 @@
 .quantity-controls span {
     min-width: 60px;
     text-align: center;
+}
+
+.admin-welcome-text {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    position: relative;
+    background: linear-gradient(to right,
+            orange 3%,
+            yellow 10%,
+            green 20%,
+            blue 25%,
+            rgb(226, 48, 226) 35%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }

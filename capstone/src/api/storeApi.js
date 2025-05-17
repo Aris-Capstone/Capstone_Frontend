@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const storeApi = createApi({
     reducerPath: "storeApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3000",
+        baseUrl: "https://capstone-backend-0e8i.onrender.com",
         prepareHeaders: (headers, { getState }) => {
             const token = getState().user?.token;
             if (token && token !== "") {

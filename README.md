@@ -1,23 +1,36 @@
 # Capstone_Frontend
-Capstone_Frontend
+Capstone Project- ✨The Happiest Store on Earth✨ 
 
-This is a basic e-commerc website built as a school coding project, showcasing a collection of stock Disney-themed merchandise. Users can (hopefully) browse products, click into each item and see the product details, add items to a shopping cart, and simulate a simple checkout process. All product images and names are used as placeholders.
+✨ Overview of E-Commerce Site
+This is a basic e-commerce website built as a school coding project, showcasing a collection of stock Disney-themed merchandise. Users can (for the most part) browse products, click into each item and see the product details, add and remove items from their shopping cart, and view their cart. They are taken to a "checkout" page upon checkout, and can then navigate back to the store. All product images and names are used as placeholders. 
+
+As a guest without an account you can only view the products, or create an account. Upon login, you can then proceed with the cart features.
  
- As an admin, you can view users, as well as user- carts. You can make updates to the carts as needed, and add products to the site. 
+As an admin, you can view all users and products. You can also add products to the site. The remove and edit features; however, are currently disabled pending future updates...
  
 This is a React application. 
 
-To run the App Locally-
-Clone the repository:
-https://github.com/Aris-Capstone/Capstone_Frontend.git
+✨ Live Demo
+Visit the deployed site: [meek-fenglisu-b60ae4.netlify.app](https://meek-fenglisu-b60ae4.netlify.app)
 
-Navigate into the project directory:
-cd capstone
+✨ Running the App Locally
 
-Install dependencies:
-npm install
+1. Clone both repositories:
+   - Backend: `https://github.com/Aris-Capstone/Block37_Unit4-Career-Sim.git`
+   - Frontend: `https://github.com/Aris-Capstone/Capstone_Frontend.git`
 
-Start the development server:
-npm start
+2. Set up the backend:  
+   cd Block37_Unit4-Career-Sim
+   npm install
+   npm run dev
 
-Open your browser and visit http://localhost:3000 to view the app.
+3. Set up the frontend:
+   cd Capstone_Frontend/capstone
+   npm install
+   npm run dev
+
+4. The app will be available at:
+   - Frontend: http://localhost:5173
+   - Backend: http://localhost:3000
+
+Note: Make sure both servers are running at the same time. 
